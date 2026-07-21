@@ -14,6 +14,12 @@ AutoMCP takes a human description, a data/API source, a deployment preference, a
 
 The public application is intentionally transparent: it never calls the endpoint you paste and never receives a credential. It demonstrates real specification validation and real package compilation in-browser. A generated package uses the official stable `@modelcontextprotocol/sdk` API, `stdio` transport, Zod schemas, tools, resources, prompts, a manifest, tests, environment template, and deployment guidance.
 
+## Signal Room workflow
+
+The interface walks a project through **Intent**, **Source**, **Policy**, and **Package**. Its visible build receipt is derived from the canonical spec, policy report, and compiled manifest: it reports package-ready operations and transport guidance, not network activity or external provisioning.
+
+The source stage is deliberately explicit about the boundary. The demo does not call a supplied endpoint or retain a credential; it performs client-side policy checks and packages a connector contract. The Advanced switch remains a simple on/off control for webhooks, scheduled jobs, and workflow surfaces, all of which stay subject to the existing policy checks.
+
 ## System flow
 
 ```text
