@@ -4,7 +4,9 @@
 
 ## Live demo
 
-Deployment in progress. The verified production URL will be added here before this branch is merged.
+[Open the public AutoMCP demo](https://automcp-beta.vercel.app)
+
+Verified as an anonymous visitor on 2026-07-20: the page renders, the Advanced capabilities switch reveals its module surface, and the generated-package download control is available without credentials.
 
 ## What it does
 
