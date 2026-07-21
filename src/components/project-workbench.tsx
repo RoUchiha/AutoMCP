@@ -25,10 +25,10 @@ const surfaceLabels: Record<AutoMcpSpec["capabilities"][number], string> = {
   workflow: "Workflows",
 };
 
-function StageHeading({ number, title, detail }: { number: string; title: string; detail: string }) {
+function StageHeading({ id, number, title, detail }: { id: string; number: string; title: string; detail: string }) {
   return <div className="stage-heading">
     <span className="stage-kicker">{number} / {title}</span>
-    <h2>{detail}</h2>
+    <h2 id={id}>{detail}</h2>
   </div>;
 }
 
@@ -104,7 +104,7 @@ export function ProjectWorkbench() {
     <div className="signal-grid">
       <div className="signal-form">
         <section className="signal-stage" aria-labelledby="intent-stage-title">
-          <StageHeading number="01" title="Intent" detail="Describe what your agent should be able to do." />
+          <StageHeading id="intent-stage-title" number="01" title="Intent" detail="Describe what your agent should be able to do." />
           <label htmlFor="mcp-intent">Desired capability</label>
           <textarea id="mcp-intent" value={spec.intent} onChange={(event) => setSpec({ ...spec, intent: event.target.value })} />
           <p className="stage-note">AutoMCP uses this description to propose a conservative MCP surface; you stay in control of the canonical spec.</p>
@@ -115,7 +115,7 @@ export function ProjectWorkbench() {
         </section>
 
         <section className="signal-stage" aria-labelledby="source-stage-title">
-          <StageHeading number="02" title="Source" detail="Connect the information your agent may use." />
+          <StageHeading id="source-stage-title" number="02" title="Source" detail="Connect the information your agent may use." />
           <label htmlFor="source-endpoint">API or data source endpoint</label>
           <input id="source-endpoint" value={spec.source.url ?? ""} inputMode="url" onChange={(event) => setSpec({ ...spec, source: { ...spec.source, url: event.target.value } })} />
           <div className="source-context">
@@ -126,7 +126,7 @@ export function ProjectWorkbench() {
         </section>
 
         <section className="signal-stage policy-stage" aria-labelledby="policy-stage-title">
-          <StageHeading number="03" title="Policy" detail="Decide where the server runs and which advanced surfaces are allowed." />
+          <StageHeading id="policy-stage-title" number="03" title="Policy" detail="Decide where the server runs and which advanced surfaces are allowed." />
           <div className="mode-control" aria-label="Deployment mode">
             <span>Deployment posture</span>
             <div>{(["local", "hybrid", "cloud"] as const).map((mode) => <button key={mode} type="button" aria-pressed={spec.deploymentMode === mode} className={spec.deploymentMode === mode ? "active" : ""} onClick={() => setSpec({ ...spec, deploymentMode: mode })}>{mode}</button>)}</div>
@@ -144,7 +144,7 @@ export function ProjectWorkbench() {
       <div className="package-column">
         <CapabilityMap spec={spec} report={report} compiled={compiled} />
         <section className="signal-stage package-stage" aria-labelledby="package-stage-title">
-          <StageHeading number="04" title="Package" detail="Review the generated server before you take it with you." />
+          <StageHeading id="package-stage-title" number="04" title="Package" detail="Review the generated server before you take it with you." />
           <BuildReceipt report={report} compiled={compiled} spec={spec} notice={notice} />
           {compiled ? <>
             <div className="file-tabs" aria-label="Generated package files">{Object.keys(compiled.files).map((file) => <button type="button" key={file} className={selectedFile === file ? "active" : ""} onClick={() => setSelectedFile(file)}>{file}</button>)}</div>

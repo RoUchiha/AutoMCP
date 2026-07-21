@@ -14,6 +14,7 @@ describe("ProjectWorkbench", () => {
     expect(screen.getByText(/policy and contract checks/i)).toBeInTheDocument();
     expect(screen.getByText("2 operations generated")).toBeInTheDocument();
     expect(screen.getByText(/does not call your endpoint or retain credentials/i)).toBeInTheDocument();
+    expect(screen.getByRole("region", { name: /describe what your agent should be able to do/i })).toBeInTheDocument();
   });
 
   it("reveals advanced modules only after the toggle is enabled", async () => {
